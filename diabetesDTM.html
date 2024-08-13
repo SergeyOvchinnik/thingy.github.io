@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Diabetes Datatable (Modified)</title>
+    <style>
+        td{
+            border: 1px solid rgb(0, 208, 255);
+        }
+    </style>
+</head>
+<body>
+    <h1>Diabetes Datatable (Modified)</h1>
+    <h2>This dataset is different to the one used in the hardcoded version</h2>
+    <table>
+
+    </table>
+    <script>
+        window.onload = function() {
+            fetch("./diabetes_prediction_dataset3.csv")
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(data) {
+                    var rows = data.split('\n');
+                    rows.forEach(function(row) {
+                        var tr = document.createElement('tr');
+                        var cells = row.split(',');
+                        cells.forEach(function(cell) {
+                            var td = document.createElement('td');
+                            td.textContent = cell;
+                            tr.appendChild(td);
+                        });
+                        document.querySelector('table').appendChild(tr);
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error fetching CSV:', error);
+                });
+        };
+    </script>
+    
+    
+    
+    
+</body>
+</html>

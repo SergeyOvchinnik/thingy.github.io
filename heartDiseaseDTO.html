@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Heart Disease Datatable (original)</title>
+    <style>
+        td{
+            border: 1px solid rgb(0, 208, 255);
+        }
+    </style>
+</head>
+<body>
+    <h1>Heart Disease Datatable (original)</h1>
+    <table>
+
+    </table>
+    <script>
+        window.onload = function() {
+            fetch("./heart_disease_uci.csv")
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(data) {
+                    var rows = data.split('\n');
+                    rows.forEach(function(row) {
+                        var tr = document.createElement('tr');
+                        var cells = row.split(',');
+                        cells.forEach(function(cell) {
+                            var td = document.createElement('td');
+                            td.textContent = cell;
+                            tr.appendChild(td);
+                        });
+                        document.querySelector('table').appendChild(tr);
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error fetching CSV:', error);
+                });
+        };
+    </script>
+    
+    
+    
+</body>
+</html>

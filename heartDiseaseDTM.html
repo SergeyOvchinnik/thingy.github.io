@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Heart Disease Datatable (Modified)</title>
+    <style>
+        td{
+            border: 1px solid rgb(0, 208, 255);
+        }
+    </style>
+</head>
+<body>
+    <h1>Heart Disease Datatable (Modified)</h1>
+    <h2>This dataset is different to the one used in the hardcoded version</h2>
+    <h4>thsi data set</h4>
+    <p>This dataset was downloaded from Kaggle which is a well known and trusted source for gathering datasets. 
+
+        this dataset was chosen as its attributes were similar to the ones already implemented in the previous predictor (stroke and diabetes). This particular datatable was great since it had a wide range of different attributes that could potentially create a more advanced predictor. 
+        As seen in the data table not only are ages of the patients provided each patient has been further categorised into age groups ; 30s, 40s etc. This feature appears throughout the dataset such as with chloesterol and bp levels 
+        </p>
+    <table>
+
+    </table>
+    <script>
+        window.onload = function() {
+            fetch("./heart_disease_data_with_features2.csv")
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(data) {
+                    var rows = data.split('\n');
+                    rows.forEach(function(row) {
+                        var tr = document.createElement('tr');
+                        var cells = row.split(',');
+                        cells.forEach(function(cell) {
+                            var td = document.createElement('td');
+                            td.textContent = cell;
+                            tr.appendChild(td);
+                        });
+                        document.querySelector('table').appendChild(tr);
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error fetching CSV:', error);
+                });
+        };
+    </script>
+    
+    
+    
+    
+</body>
+</html>
